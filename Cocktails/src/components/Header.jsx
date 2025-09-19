@@ -1,4 +1,4 @@
-import {NavLink, Link} from "react-router";
+import {NavLink, Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -14,7 +14,7 @@ function Header() {
                 <NavLink to="/cocktails" className="header__nav-link">
                     Cocktails
                 </NavLink>
-                <NavLink to="/savedCocktails" className="header__nav-link">
+                <NavLink to="/saved-cocktails" className="header__nav-link">
                     Saved Cocktails
                 </NavLink>
             </nav>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function CocktailList() {
+function CocktailList({ favourites, addToFavourites, removeFromFavourites }) {
   const [cocktails, setCocktails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,15 +19,17 @@ function CocktailList() {
       });
   }, []);
 
+  const isFavourite = (id) => favourites.some((fav) => fav.idDrink === id);
+
   if (loading) return <p>Loading cocktails...</p>;
   if (error) return <p>Error: {error}</p>;
   if (cocktails.length === 0) return <p>No cocktails found.</p>;
 
   return (
-    <div className="cocktail-list">
+    <div className="cocktail_list">
       {cocktails.map((drink) => (
-        <div key={drink.idDrink} className="cocktail-card">
-          <h2>{drink.strDrink}</h2>
+        <div key={drink.idDrink} className="cocktail_card">
+          <h2><Link className="drink_link" to={`/cocktails/${drink.idDrink}`}>{drink.strDrink}</Link></h2>
           <img
             src={drink.strDrinkThumb}
             alt={drink.strDrink}
@@ -34,20 +37,18 @@ function CocktailList() {
           />
           <p><strong>Category:</strong> {drink.strCategory}</p>
           <p><strong>Alcoholic:</strong> {drink.strAlcoholic}</p>
-          <p><strong>Glass:</strong> {drink.strGlass}</p>
-          <p><strong>Ingredients:</strong></p>
-          <ul>
-            {[...Array(15).keys()].map((i) => {
-              const ingredient = drink[`strIngredient${i + 1}`];
-              const measure = drink[`strMeasure${i + 1}`];
-              return ingredient ? (
-                <li key={i}>
-                  {measure ? measure : ""} {ingredient}
-                </li>
-              ) : null;
-            })}
-          </ul>
-          <p><strong>Instructions:</strong> {drink.strInstructions}</p>
+          <button
+            className="save_button"
+            onClick={() =>
+              isFavourite(drink.idDrink)
+                ? removeFromFavourites(drink.idDrink)
+                : addToFavourites(drink)
+            }
+          >
+            {isFavourite(drink.idDrink)
+              ? "Remove from favourites"
+              : "Favourite"}
+          </button>
           <hr />
         </div>
       ))}

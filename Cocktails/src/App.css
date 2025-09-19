@@ -1,3 +1,4 @@
+/* --- Existing CSS --- */
 .header {
     display: flex;
     font-family: Verdana, sans-serif;
@@ -5,7 +6,6 @@
     justify-content: space-between; 
     align-items: center;
     color: black;
-    height: 3rem;
     padding: 0 40px;                
     width: 100vw;                   
     box-sizing: border-box;  
@@ -22,13 +22,16 @@
 }
 
 .header__nav-link {
-    color: black;            
-    text-decoration: none;   
+    color:black;
+    text-decoration: none;
+    padding-inline: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;  
 }
 
 .header__nav-link:hover {
-    color: black;          
-    text-decoration: underline;
+    background-color: #4CAF50;
+    border-radius: 5px;
 }
 
 .header__title-text {
@@ -38,15 +41,31 @@
 
 .footer {
     display: flex;
-    flex-direction: column-reverse;
+    justify-content: center; 
     background-color: rgb(54, 54, 54);
     font-family: Verdana, sans-serif;
-    height: 80px;
+    height: 4rem;
+    align-items: center;
+    position: relative; 
+    width: 100%; 
+    border-radius: 5px;
+}
+
+.footer_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    position: absolute; 
+    left: 10px;
 }
 
 .footer__nav {
-    text-align: center;
-    height: 50px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 20px; 
 }
 
 .footer__nav-link {
@@ -58,16 +77,8 @@
 }
 
 .footer__nav-link:hover {
-    color: rgb(104, 104, 104);
-    background-color: grey;
+    background-color: #4CAF50;
     border-radius: 5px;
-}
-
-.cocktail-list {
-    displaY: flex;
-    padding-top: 50px;
-    flex-direction: column;
-    padding-left: 50px;
 }
 
 .cocktail_pic {
@@ -75,4 +86,128 @@
     width: 150px;
     border-radius: 5px;
     align-items: center;
+    box-shadow: 0px 0px 5px black;
+}
+
+.drink_link {
+    color: black;
+    text-decoration: none;
+    padding: 2px 0;
+    padding-inline: 2px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.drink_link:hover {
+    background-color: #4CAF50;
+    border-radius: 4px;
+}
+
+.cocktail_list {
+    padding-left: 25px;
+    text-decoration: none;
+    font-family: Verdana, sans-serif;
+    color: black;
+}
+
+.save_button {
+    background-color: #4CAF50;      
+    color: white;                   
+    padding: 12px 24px;            
+    font-size: 16px;                
+    border: none;                   
+    border-radius: 8px;             
+    cursor: pointer;                
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    transition: all 0.3s ease; 
+    font-family: Verdana, sans-serif;
+}
+
+.save_button:hover {
+    background-color: #45a049;      
+    transform: translateY(-2px);  
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15); 
+}
+
+.home_picture {
+    padding: 50px;
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+
+
+/* Laptops (1024px and above) */
+@media screen and (min-width: 1024px) {
+    .header {
+        flex-direction: row;
+        padding: 0 60px;
+    }
+
+    .header__nav {
+        gap: 30px;
+    }
+
+    .home_picture {
+        width: 40%;
+        padding: 40px;
+    }
+
+    .footer__nav-link {
+        padding-inline: 30px;
+    }
+}
+
+/* iPhone SE (max-width: 375px) */
+@media screen and (max-width: 375px) {
+    .header {
+        padding: 0 10px;
+    }
+
+    .header__nav {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .header__nav-link {
+        padding-inline: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .home_picture {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .footer_list {
+        flex-direction: column;
+        position: static;
+        gap: 10px;
+    }
+
+    .footer__nav-link {
+        padding-inline: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .cocktail_pic {
+        width: 120px;
+    }
+
+    .save_button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
